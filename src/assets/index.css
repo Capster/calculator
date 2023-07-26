@@ -82,10 +82,18 @@ code {
   margin-right: 25px;
 }
 
+.Record-container {
+  margin: 0;
+  width: max-content;
+  transform-origin: right bottom 0px;
+  transition: all .1s linear;
+}
+
 .Record-small,
 .Record-big {
-  transform-origin: left bottom 0px;
-  transition: all .1s linear;
+  display: flex;
+  align-items: end;
+  justify-content: end;
 }
 
 .Record-small {

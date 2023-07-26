@@ -8,8 +8,6 @@ export default function Record({ expression, big }) {
   const [scale, setScale] = useState(1);
   const spanRef = useRef();
 
-  // https://github.com/fellipeutaka/react-calculator/blob/main/src/components/CalculatorHead.tsx
-  // Do we really need that hook here?
   useEffect(() => {
     const parentNode = spanRef.current?.parentNode;
     const availableWidth = parentNode?.offsetWidth;
@@ -22,32 +20,31 @@ export default function Record({ expression, big }) {
         setScale(1);
       }
     }
-  }, [expression]);
+  }, [expression, scale]);
 
-  // Skip the format stage for the big one
-  // Text should stick a little to the right little
-  // + Disable moving animation (leave only the transform one)
   const stringExpression = expression + "";
   const content = stringExpression
     .split(/(\(|\)|\+|-|\*|\/)/g)
     .map((segment, index) => {
       if (segment === "(" || segment === ")") {
-        return <span className="Record-bracket" key={index} ref={spanRef}>{segment}</span>
+        return <span className="Record-bracket" key={index}>{segment}</span>
       }
       const prettyOperator = formatOperator(segment);
       if (prettyOperator) {
-        return <span className="Record-operator" key={index} ref={spanRef}>{prettyOperator}</span>
+        return <span className="Record-operator" key={index}>{prettyOperator}</span>
       } else {
         const prettyNumber = formatNumber(segment);
-        return <span ref={spanRef} key={index} ref={spanRef}>{prettyNumber}</span>;
+        return <span key={index}>{prettyNumber}</span>;
       }
     });
 
   const style = { transform: `scale(${scale},${scale})` };
 
   return (
-    <div className={big ? "Record-big" : "Record-small"} style={style}>
-      {content}
+    <div className={big ? "Record-big" : "Record-small"}>
+      <p className="Record-container" ref={spanRef}  style={style}>
+        {content}
+      </p>
     </div>
   )
 }
