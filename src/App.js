@@ -1,14 +1,14 @@
-import './App.css';
+import "./App.css";
 
-import { useReducer } from 'react';
+import { useReducer } from "react";
 
-import Button from './components/Button';
-import Record from './components/Record';
-import ThemeSwitch from './components/ThemeSwitch';
+import Button from "./components/Button";
+import Record from "./components/Record";
+import ThemeSwitch from "./components/ThemeSwitch";
 
 import { formatOperator } from "./utils/formatOperator.js"
-import buttons from './data/buttons.js'
-import { reducer } from './reducers/'
+import buttons from "./data/buttons.js"
+import { reducer } from "./reducers/"
 import useTheme from "./hooks/useTheme.js"
 
 function App() {
@@ -33,7 +33,8 @@ function App() {
         </div>
         <div className="App-display">
           {
-            state.result !== "0" && <Record expression={state.expression}></Record>
+          //state.result !== "0" && 
+          <Record expression={state.expression}></Record>
           }
           <Record big={true} expression={state.result}></Record>
         </div>
