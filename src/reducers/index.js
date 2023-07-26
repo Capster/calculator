@@ -18,6 +18,10 @@ export function reducer(state, action) {
 const operators = ['+', '-', '*', '/'];
 
 const _reducer = (state, { type, symbol }) => {
+  const lastChar = state.expression.slice(-1);
+  const isEmpty = state.expression === "0";
+  const count = pattern => (state.expression.match(pattern) || []).length;
+
   switch (type) {
     case "toggle_theme":
       return {
@@ -27,11 +31,10 @@ const _reducer = (state, { type, symbol }) => {
     case "number":
       return {
         ...state,
-        expression: (state.expression === "0" ? "" : state.expression) + symbol,
+        expression: (isEmpty ? "" : state.expression) + symbol,
       };
     case "operator":
-      if (state.expression === "0") return { ...state };
-      const lastChar = state.expression.slice(-1);
+      if (isEmpty) return { ...state };
       const nextExpression = operators.includes(lastChar)
         ? state.expression.substr(0, state.expression.length - 1) + symbol
         : state.expression + symbol;
@@ -52,25 +55,16 @@ const _reducer = (state, { type, symbol }) => {
         ...state,
         expression: (state.expression.length === 1) ? "0" : state.expression.slice(0, -1),
       }
-    case "negative":
-      return {
-        ...state,
-        expression: state.expression.startsWith("-") ? state.expression.slice(1) : "-" + state.expression,
-      }
     case "bracket_open":
-      // TODO
-      if (!operators.includes(state.expression.slice(-1))) {
-        return {
-          ...state,
-          expression: state.expression + "*(",
-        }
-      }
-
+      if (operators.includes(lastChar)) return { ...state }
       return {
         ...state,
-        expression: (state.expression === "0") ? "(" : state.expression + "(",
+        expression: isEmpty ? "(" : (state.expression + (lastChar === "(" ? "(" : "*(")),
       }
     case "bracket_close":
+      const opened = count(/\(/g);
+      const closed = count(/\)/g);
+      if (operators.includes(lastChar) || opened === closed) return { ...state }
       return {
         ...state,
         expression: state.expression + ")",
