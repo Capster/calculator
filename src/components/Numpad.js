@@ -17,7 +17,7 @@ export default function Numpad({ handleClick }) {
 
   return (
     <div className="Numpad">
-      <div className="Numpad-container">
+      <div className="Numpad__container">
         {numpadButtons}
       </div>
     </div>

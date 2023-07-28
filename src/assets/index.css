@@ -38,7 +38,7 @@ body.dark-mode {
 
 }
 
-.App-screen {
+.App__screen {
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
   background-color: var(--primary-background-color);
@@ -48,27 +48,18 @@ body.dark-mode {
   flex-direction: column;
 }
 
+.App__theme-switch {
+  margin-top: 38px;
+}
+
 @media all and (min-width: 468px) {
-  .App-screen {
+  .App__screen {
     position: relative;
     width: 305px;
     aspect-ratio: 9 / 19.5;
     border-radius: 26px;
   }
-
-  .Numpad {
-    border-bottom-right-radius: 34px;
-    border-bottom-left-radius: 34px;
-  }
 }
-
-.App-switch {
-  margin-top: 38px;
-}
-
-/*.App-header {*/
-  /*width: 100px;*/
-/*}*/
 
 .Display {
   padding: 30px;
@@ -80,36 +71,36 @@ body.dark-mode {
   flex-grow: 2;
 }
 
-.Record-container {
+.Record__container {
   margin: 0;
   width: max-content;
   transform-origin: right bottom 0px;
   transition: all .1s linear;
 }
 
-.Record-small,
-.Record-big {
+.Record--small,
+.Record--big {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
 }
 
-.Record-small {
+.Record--small {
   flex-grow: 1;
 }
 
-.Record-big {
+.Record--big {
   font-size: 41px;
   font-weight: bold;
   margin-top: 20px;
 }
 
-.Record-operator {
+.Record__segment--operator {
   color: var(--secondary-color);
   margin: 0 6px;
 }
 
-.Record-bracket {
+.Record__segment--bracket {
   color: var(--tertiary-color);
 }
 
@@ -124,18 +115,7 @@ body.dark-mode {
   flex: 0 0 59.4%;
 }
 
-/*.App-footer {*/
-  /*background-color: hsl(0, 1%, 38%);*/
-  /*padding: 40px 20px;*/
-  /*text-align: center;*/
-  /*color: hsl(0, 0%, 100%);*/
-
-  /*a {*/
-    /*color: hsl(0, 0%, 100%);*/
-  /*}*/
-/*}*/
-
-.Numpad-container {
+.Numpad__container {
   height: 100%;
   width: 100%;
 
@@ -143,6 +123,13 @@ body.dark-mode {
   grid-template-columns: repeat(4, calc(88% / 4));
   grid-template-rows: repeat(5, calc(84% / 5));
   padding: 8% 6%;
+}
+
+@media all and (min-width: 468px) {
+  .Numpad {
+    border-bottom-right-radius: 34px;
+    border-bottom-left-radius: 34px;
+  }
 }
 
 .Button {
@@ -164,14 +151,13 @@ body.dark-mode {
 
 .Button:active {
   box-shadow: 0px 0px 10px 1px var(--primary-background-color);
-  /*background-color: var(--secondary-background-color);*/
 }
 
-.Button.side {
+.Button--side {
   color: var(--secondary-color);
 }
 
-.Button.top {
+.Button--top {
   color: var(--tertiary-color);
 }
 
@@ -185,10 +171,10 @@ body.dark-mode {
   color: var(--disabled-color);
 }
 
-.ThemeSwitch > .ThemeSwitch-active {
+.ThemeSwitch__icon--active {
   color: var(--primary-color);
 }
 
-.ThemeSwitch > .ThemeSwitch-light {
+.ThemeSwitch__icon--light {
   margin-right: 25px;
 }

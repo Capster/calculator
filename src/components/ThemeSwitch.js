@@ -5,8 +5,22 @@ import { PiSunBold as Sun } from "react-icons/pi";
 export default function ThemeSwitch({ value, onChange, ...props }) {
   return (
     <button className="ThemeSwitch" onClick={() => onChange()} {...props} >
-      <Sun size={18} className={`ThemeSwitch-light ${value === "light" ? "ThemeSwitch-active" : ""}`} />
-      <Moon size={18} className={`ThemeSwitch-dark ${value === "dark" ? "ThemeSwitch-active" : ""}`}/>
+      <Sun
+        size={18}
+        className={
+          `ThemeSwitch__icon
+           ThemeSwitch__icon--light
+          ${value === "light" ? "ThemeSwitch__icon--active" : ""}`
+        }
+      />
+      <Moon
+        size={18}
+        className={
+          `ThemeSwitch__icon
+           ThemeSwitch__icon--dark
+           ${value === "dark" ? "ThemeSwitch__icon--active" : ""}`
+        }
+      />
     </button>
   );
 }

@@ -18,8 +18,8 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-screen">
-        <div className="App-switch">
+      <div className="App__screen">
+        <div className="App__theme-switch">
           <ThemeSwitch value={theme} onChange={() => toggleTheme()}/>
         </div>
         <Display expression={state.expression} result={state.result}/>
