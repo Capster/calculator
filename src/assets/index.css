@@ -1,3 +1,7 @@
+* {
+  transition: all .1s linear;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -25,10 +29,111 @@ body.dark-mode {
   --disabled-color: #777;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
 }
+
+.App-screen {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: var(--primary-background-color);
+  color: var(--primary-color);
+
+  display: flex;
+  flex-direction: column;
+}
+
+@media all and (min-width: 468px) {
+  .App-screen {
+    position: relative;
+    width: 305px;
+    aspect-ratio: 9 / 19.5;
+    border-radius: 26px;
+  }
+
+  .Numpad {
+    border-bottom-right-radius: 34px;
+    border-bottom-left-radius: 34px;
+  }
+}
+
+.App-switch {
+  margin-top: 38px;
+}
+
+/*.App-header {*/
+  /*width: 100px;*/
+/*}*/
+
+.Display {
+  padding: 30px;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.Record-container {
+  margin: 0;
+  width: max-content;
+  transform-origin: right bottom 0px;
+  transition: all .1s linear;
+}
+
+.Record-small,
+.Record-big {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.Record-small {
+  flex-grow: 1;
+}
+
+.Record-big {
+  font-size: 41px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.Record-operator {
+  color: var(--secondary-color);
+  margin: 0 6px;
+}
+
+.Record-bracket {
+  color: var(--tertiary-color);
+}
+
+.Numpad {
+  background-color: var(--secondary-background-color);
+  font-size: 1.3em;
+  color: white;
+  border-top-right-radius: 34px;
+  border-top-left-radius: 34px;
+
+  width: 100%;
+  flex: 0 0 59.4%;
+}
+
+/*.App-footer {*/
+  /*background-color: hsl(0, 1%, 38%);*/
+  /*padding: 40px 20px;*/
+  /*text-align: center;*/
+  /*color: hsl(0, 0%, 100%);*/
+
+  /*a {*/
+    /*color: hsl(0, 0%, 100%);*/
+  /*}*/
+/*}*/
 
 .Numpad-container {
   height: 100%;
@@ -53,7 +158,13 @@ code {
   box-shadow: 0px 0px 10px var(--button-background-color);
 }
 
-.Button::active {
+.Button:hover {
+  background-color: var(--primary-background-color);
+}
+
+.Button:active {
+  box-shadow: 0px 0px 10px 1px var(--primary-background-color);
+  /*background-color: var(--secondary-background-color);*/
 }
 
 .Button.side {
@@ -80,36 +191,4 @@ code {
 
 .ThemeSwitch > .ThemeSwitch-light {
   margin-right: 25px;
-}
-
-.Record-container {
-  margin: 0;
-  width: max-content;
-  transform-origin: right bottom 0px;
-  transition: all .1s linear;
-}
-
-.Record-small,
-.Record-big {
-  display: flex;
-  align-items: end;
-  justify-content: end;
-}
-
-.Record-small {
-  flex-grow: 1;
-}
-
-.Record-big {
-  font-size: 41px;
-  font-weight: bold;
-}
-
-.Record-operator {
-  color: var(--secondary-color);
-  margin: 0 6px;
-}
-
-.Record-bracket {
-  color: var(--tertiary-color);
 }
