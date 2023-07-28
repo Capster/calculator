@@ -145,12 +145,14 @@ body.dark-mode {
   box-shadow: 0px 0px 10px var(--button-background-color);
 }
 
-.Button:hover {
-  background-color: var(--primary-background-color);
-}
+@media (hover: hover) {
+  .Button:hover {
+    background-color: var(--primary-background-color);
+  }
 
-.Button:active {
-  box-shadow: 0px 0px 10px 1px var(--primary-background-color);
+  .Button:active {
+    box-shadow: 0px 0px 10px 1px var(--primary-background-color);
+  }
 }
 
 .Button--side {
