@@ -1,7 +1,7 @@
 import "../assets/index.css";
 
-export default function Button({ className, ...props }) {
+export default function Button({ variant, ...props }) {
   return (
-    <button className={`Button ${className}`} {...props} />
+    <button className={`Button ${variant}`} {...props} />
   );
 }
