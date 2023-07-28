@@ -56,10 +56,10 @@ const _reducer = (state, { type, symbol }) => {
         expression: (state.expression.length === 1) ? "0" : state.expression.slice(0, -1),
       }
     case "bracket_open":
-      if (operators.includes(lastChar)) return { ...state }
+      if (isEmpty) return { ...state, expression: "(" };
       return {
         ...state,
-        expression: isEmpty ? "(" : (state.expression + (lastChar === "(" ? "(" : "*(")),
+        expression: state.expression + ((lastChar === "(" || operators.includes(lastChar)) ? "(" : "*("),
       }
     case "bracket_close":
       const opened = count(/\(/g);
